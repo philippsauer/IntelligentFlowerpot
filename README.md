@@ -46,3 +46,7 @@ Weiterhin wichtig ist die Einstellung des korrekten Pins, an welchem das Datenka
 Auf Basis dieser Zeiten und des vordefinierten Bitstrings wird das Signal der Funktfernbedienung imitiert. Da es im Programmverlauf zu Verzögerungen im Millisekundenbereich kommen kann (z.B. auf Grund hoher CPU Auslastung), besteht die Möglichkeit das der imitierte Schaltcode nicht korrekt erkannt wird. Die folgende Einstellung regelt deshalb wie oft die jeweilige Anweisung (on/off) abgesendet werden soll. Um sicher zu gehen wird ein Wert von 10 eingestellt:
 
     NUM_ATTEMPTS = 10
+
+### Anschluss der Module
+
+![Anschluss](images/schaltCodes_pins.jpg?raw=true "Anschluss")
