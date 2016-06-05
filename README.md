@@ -21,7 +21,7 @@ Um das Script `receive.py` ausführbar zu machen muss das Modul `matplotlib` ins
 
 ![Schaltcodes](images/schaltCodes_4.PNG?raw=true "Schaltcodes")
 
-Anschließend konnten die konkreten Schaltcodes vom Plot abgelesen werden. Im Fall unseres Projektes wird die Funksteckdose A durch wiederholtes senden der folgenden Bitstrings an- bzw. ausgeschaltet:
+Anschließend konnten die konkreten Schaltcodes vom Plot abgelesen werden. Im Fall unseres Projektes wird die Funksteckdose A durch wiederholtes Senden der folgenden Bitstrings an- bzw. ausgeschaltet:
 
     An:  '10010110101010101010101001100110010101010101100101101001010101011'
     Aus: '10010110101010101010101001100110010101010101100101101010010101011'
