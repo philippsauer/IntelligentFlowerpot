@@ -30,3 +30,19 @@ Anschließend konnten die konkreten Schaltcodes vom Plot abgelesen werden. Im Fa
     Aus: '10010110101010101010101001100110010101010101100101101010010101011'
 
 ### Konfiguration des Transmitters
+
+Um die Funksteckdose erfolgreich anzusteuern, muss das Transmitter-Modul einen der oben genannten Bitstrings senden. Wichtig ist hierbei die korrekte Länge der Pausen. Aus den Plot des vorherigen Kapitels wurden daher folgende Zeiten abgelesen:
+
+    short_pause = 0.00020
+    short_delay = 0.00020
+    long_pause = 0.00120
+    repeat_delay = 0.00240
+    repeat_pause = 0.01000
+    
+Weiterhin wichtig ist die Einstellung des korrekten Pins, an welchem das Datenkabel des Moduls angeschlossen wird:
+
+    TRANSMIT_PIN = 18
+    
+Auf Basis dieser Zeiten und des vordefinierten Bitstrings wird das Signal der Funktfernbedienung imitiert. Da es im Programmverlauf zu Verzögerungen im Millisekundenbereich kommen kann (z.B. auf Grund hoher CPU Auslastung), besteht die Möglichkeit das der imitierte Schaltcode nicht korrekt erkannt wird. Die folgende Einstellung regelt deshalb wie oft die jeweilige Anweisung (on/off) abgesendet werden soll. Um sicher zu gehen wird ein Wert von 10 eingestellt:
+
+    NUM_ATTEMPTS = 10
