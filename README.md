@@ -10,8 +10,7 @@ Das An- bzw. Ausschalten der Funksteckdose A erfolgt über die Befehle
 
 ### Auslesen der Schaltcodes
 
-Um die Funksteckdosen über das Transmitter-Modul steuern zu können mussten zuerst die Schaltcodes ermittelt werden. Dies geschah mit Hilfe des Receiver-Moduls und einer Anleitung von
-http://www.instructables.com/id/Super-Simple-Raspberry-Pi-433MHz-Home-Automation/step2/Sniffing-the-handset-codes/
+Um die Funksteckdosen über das Transmitter-Modul steuern zu können mussten zuerst die Schaltcodes ermittelt werden. Dies geschah mit Hilfe des mitgelieferten Receiver-Moduls und auf Basis einer Anleitung auf Instructables.com: [Link](http://www.instructables.com/id/Super-Simple-Raspberry-Pi-433MHz-Home-Automation) 
 
 Je nach Anschluss des Moduls muss im Script `receive.py` der jeweilige GPIO-Pin angegeben werden, welcher die Daten empfängt:
 
