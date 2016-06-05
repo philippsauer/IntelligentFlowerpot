@@ -17,7 +17,11 @@ Je nach Anschluss des Moduls muss im Script `receive.py` der jeweilige GPIO-Pin 
 
     RECEIVE_PIN = 17
 
-Um das Script `receive.py` ausführbar zu machen muss das Modul `matplotlib` installiert sein. Die Ausführung erfolgt über `sudo python receive.py`. Anschließend lauscht das Script für 5 Sekunden auf eingehende Signale am angegebenen Pin. Die Signale werden über einen Plot ausgegeben:
+Um das Script `receive.py` ausführbar zu machen muss das Modul `matplotlib` installiert sein. Die Ausführung erfolgt über:
+
+    sudo python receive.py
+
+Anschließend lauscht das Script für 5 Sekunden auf eingehende Signale am angegebenen Pin. Die Signale werden über einen Plot ausgegeben:
 
 ![Schaltcodes](images/schaltCodes_4.PNG?raw=true "Schaltcodes")
 
