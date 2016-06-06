@@ -47,6 +47,14 @@ Auf Basis dieser Zeiten und des vordefinierten Bitstrings wird das Signal der Fu
 
     NUM_ATTEMPTS = 10
 
-### Anschluss der Module
+### Anschluss der 433MHz-Module
 
 ![Anschluss](images/schaltCodes_pins.jpg?raw=true "Anschluss")
+
+### Helligkeitssensor
+
+Ausführung erfolgt über folgenden Befehl:
+
+    sudo python light.py
+    
+Ausgegeben wird entweder 0 (kein Licht), oder 1 (Licht) in einer Dauerschleife.
