@@ -44,7 +44,7 @@ Um das Script `receive.py` ausführbar zu machen muss das Modul `matplotlib` ins
 
 Anschließend lauscht das Script für 5 Sekunden auf eingehende Signale am angegebenen Pin. Die Signale werden über einen Plot ausgegeben:
 
-![Schaltcodes](images/schaltCodes_4.PNG?raw=true "Schaltcodes")
+![Schaltcodes](static/schaltCodes_4.PNG?raw=true "Schaltcodes")
 
 Anschließend konnten die konkreten Schaltcodes vom Plot abgelesen werden. Im Fall unseres Projektes wird die Funksteckdose A durch wiederholtes Senden der folgenden Bitstrings an- bzw. ausgeschaltet:
 
