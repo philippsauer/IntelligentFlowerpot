@@ -49,4 +49,4 @@ Auf Basis dieser Zeiten und des vordefinierten Bitstrings wird das Signal der Fu
 
 ### Anschluss der Module
 
-![Anschluss](images/schaltCodes_pins.jpg?raw=true "Anschluss")
+![Anschluss](img/schaltCodes_pins.jpg?raw=true "Anschluss")
