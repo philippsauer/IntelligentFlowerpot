@@ -1,6 +1,28 @@
 # Intelligenter Blumentopf
 University Project for Home Automation
 
+## Ordnerstruktur
+
+    /static/    <--- Enthält sämtliche statische Dateien (Images, CSS, Javascript etc.)
+    /templates/ <--- Hier liegen sämltiche HTML-Dateien, welche von der Flask-Webapp verwendet werden
+    .           <--- Python- und sonstige Programmfiles liegen direkt im Projektverzeichnis
+
+## Die Web-Applikation
+### Vorbereitung
+
+Um den Webserver zu starten und die Web-App laufen zu lassen, muss zuerst das Micro-Framework "Flask" mit der Erweiterung "flask-classy" auf dem Raspberry installiert sein. Die installation kann mit folgenden Kommandos erfolgen:
+
+    sudo pip install Flask
+    sudo pip install flask_classy
+
+### Start des Servers
+
+Der Start des Servers erfolgt automatisch beim Start der Haupt-Anwendung:
+
+    sudo python IntelligenterBlumentopf.py
+    
+Der Server ist nun über http://localhost/ (direkt von RaspberryPi), bzw. von anderen Netzwerkgeräten über folgende Adresse erreichbar: http://192.168.*.*/
+
 ## Steuerung der Funksteckdosen
 
 Das An- bzw. Ausschalten der Funksteckdose A erfolgt über die Befehle
