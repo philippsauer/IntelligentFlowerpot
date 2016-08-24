@@ -80,3 +80,56 @@ Ausführung erfolgt über folgenden Befehl:
     sudo python light.py
     
 Ausgegeben wird entweder 0 (kein Licht), oder 1 (Licht) in einer Dauerschleife.
+
+
+### Kommunikation zwischen Arduino (Sender) und Raspberry Pi (Empfänger)
+
+#### Arduino Nano
+
+- DHT22 Temperatur/Feuchtigkeitssensor
+- HC-SR04 Ultraschallsensor
+- 433 Mhz Sender
+
+#### Verkabelung
+
+- Data Temperatur D2
+- Data Sender D7
+- Pin Echo D11
+- Pin Trigger D12
+
+#### Libraries
+
+- DHT
+- VirtualWire
+- NewPing
+
+#### Raspberry
+
+Zum empfangen der Sensordaten via 433 Mhz Pigpio installieren (http://abyz.co.uk/rpi/pigpio/index.html)
+
+    wget abyz.co.uk/rpi/pigpio/pigpio.zip
+    unzip pigpio.zip
+    cd PIGPIO
+    make -j4
+    sudo make install
+    
+Pigpio daemon starten
+
+    sudo pigpiod
+    
+Piscope zur Überprüfung des für den Empfänger gewählten GPIO zur Hilfe nehmen (http://abyz.co.uk/rpi/pigpio/piscope.html)
+
+    wget abyz.co.uk/rpi/pigpio/piscope.tar
+    tar xvf piscope.tar
+    cd PISCOPE
+    make hf
+    make install
+
+Piscope starten
+
+    cd PISCOPE
+    piscope
+    
+VirtualWire Klasse für Python importieren (http://abyz.co.uk/rpi/pigpio/code/vw.zip)
+    
+    
