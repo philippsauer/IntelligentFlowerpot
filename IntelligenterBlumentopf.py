@@ -7,6 +7,8 @@ import time
 import logging
 
 from WebApp import WebApp
+from TempHumiditySensor import TempHumiditySensor 
+from CSVData import CSVData
 
 class IntelligenterBlumentopf(threading.Thread):
 
@@ -15,6 +17,7 @@ class IntelligenterBlumentopf(threading.Thread):
         
         # Get configuration
         self.disableLogging = config.general['disableLogging']
+        self.checkSensorsInterval = config.sensors['checkSensorsInterval']
         self.initializeWifi = False
         
         # Start logging       
@@ -34,11 +37,18 @@ class IntelligenterBlumentopf(threading.Thread):
 if __name__ == '__main__':
     
     ib = IntelligenterBlumentopf()
+    tempHumiditySensor = TempHumiditySensor()
+    csvData = CSVData()
     ib.logger.debug('IntelligenterBlumentopf is up and running...')  
     
     while True:
+    
+        #check sensors
+        humidity = tempHumiditySensor.getTemparature()
+        temp = tempHumiditySensor.getHumidity()
         
-        #main loop... 
-        #do something
-                
-        time.sleep(1000)
+        #write data to file
+        csvData.setData(temp, '(bodenfeuchtigkeit)', humidity, '(fuellstand)')
+        
+        #wait some Time        
+        time.sleep(ib.checkSensorsInterval)

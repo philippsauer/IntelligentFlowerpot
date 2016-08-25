@@ -3,8 +3,11 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Intelligenter Blumentopf</title>
-	<meta name="description" content="Kurzbeschreibung" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
+  <script type=text/javascript src="{{url_for('static', filename='Chart.min.js') }}"></script>
+  <script type=text/javascript src="{{url_for('static', filename='main.js') }}"></script>
+  
 </head>
  <body>
     <div id="wrapper">
@@ -16,10 +19,17 @@
       </div>
         <div id="content">
             <div id="beleuchtung">
-                <h3>Beleuchtungs-Steuerung</h2>
+                <h3>Beleuchtungs-Steuerung</h2>            
+                    <div id="content-part beleuchtung-content-left">
+                        test
+                    </div>
+                    <div id="content-part beleuchtung-content-right">
+                        <canvas id="beleuchtungsChart" width="250" height="250"></canvas>
+                    </div>
             </div> 
             <div id="bewaesserung">
                 <h3>Bewässerungs-Steuerung</h2>
+                <canvas id="bewaesserungsChart" width="400" height="400"></canvas>
             </div> 
         </div> 
       </div>
