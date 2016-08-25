@@ -81,6 +81,15 @@ Ausführung erfolgt über folgenden Befehl:
     
 Ausgegeben wird entweder 0 (kein Licht), oder 1 (Licht) in einer Dauerschleife.
 
+### Temparatur + Luftfeuchtigkeit (Modul DHT11)
+
+Installation und einrichtung erfolgte in Anlehnung an:
+https://jankarres.de/2015/02/raspberry-pi-mit-sensoren-und-gpio-arbeiten/
+
+Adafruit (wird vorausgesetzt) gibt's hier: https://pypi.python.org/pypi/Adafruit_Python_DHT/1.1.2
+
+Test Command (usage: sudo Adafruit_DHT [11|22|2302] GPIOpin#):
+    example: sudo Adafruit_DHT 11 4
 
 ### Kommunikation zwischen Arduino (Sender) und Raspberry Pi (Empfänger)
 
