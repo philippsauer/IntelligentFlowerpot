@@ -110,7 +110,7 @@ Test Command (usage: sudo Adafruit_DHT [11|22|2302] GPIOpin#):
 
 - DHT
 - VirtualWire
-- NewPing
+- NewPing (mit berechnetem Ping-Median | https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home#!timer-median-sketch)
 
 #### Raspberry
 
