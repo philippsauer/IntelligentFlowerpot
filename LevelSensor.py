@@ -24,11 +24,11 @@ class LevelSensor():
       self.logger.addHandler(ch)
       self.logger.disabled = self.disableLogging
 	  
-	  # GPIO Connection
-	  self.pi = pigpio.pi()
+      # GPIO Connection
+      self.pi = pigpio.pi()
       self.rx = vw.rx(pi, self.pin, self.bps)
 	  
-	  #self.rx.cancel()
+      #self.rx.cancel()
       #self.pi.stop()
 
     def getLevel(self):
