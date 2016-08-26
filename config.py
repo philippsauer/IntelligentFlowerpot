@@ -1,8 +1,7 @@
 general = dict(
     disableLogging = False,
     csvFile = 'data.csv',
-    logging_formatter = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-   
+    logging_formatter = '%(asctime)s - %(name)s - %(levelname)s - %(message)s', 
 )
 
 app = dict(
@@ -17,4 +16,6 @@ sensors = dict(
     brightnessGPIOPort = 17,
     tempAndHumidityGPIOPort = 4,
     tempAndHumiditySensorVersion = 11,
+    LevelSensorGPIOPort = 27
+    LevelSensorBPS = 2000
 )

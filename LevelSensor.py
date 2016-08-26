@@ -2,51 +2,62 @@ import vw
 import time
 import pigpio
 import datetime
+import config
+import logging
 
-class LevelSensor
+class LevelSensor():
 
-    if __name__ == "__main__":
+   def __init__(self):
+   
+      # Load configuration values & initialize class variables
+      self.disableLogging = config.general['disableLogging']
+      self.pin = config.sensors['LevelSensorGPIOPort']
+      self.bps = config.sensors['LevelSensorBPS']
 
-        RX=27
-        BPS=2000 
-        pi = pigpio.pi()
-        rx = vw.rx(pi, RX, BPS)
+      # Set up logging       
+      self.logger = logging.getLogger('Database')
+      self.logger.setLevel(logging.DEBUG)
+      ch = logging.StreamHandler()
+      ch.setLevel(logging.DEBUG)
+      formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+      ch.setFormatter(formatter)
+      self.logger.addHandler(ch)
+      self.logger.disabled = self.disableLogging
+	  
+	  # GPIO Connection
+	  self.pi = pigpio.pi()
+      self.rx = vw.rx(pi, self.pin, self.bps)
+	  
+	  #self.rx.cancel()
+      #self.pi.stop()
 
-        start = time.time()
-
-        print "Waiting for data on pin #{rx} at {bps} bps".format(rx=RX, bps=BPS)
+    def getLevel(self):
 
         while True:
-            if not rx.ready():
+            if not self.rx.ready():
                 time.sleep(0.1)
             else:
-                msg = "".join(chr (c) for c in rx.get())
-
-                print "Received distance: {dist}".format(dist=msg)
+                msg = "".join(chr (c) for c in self.rx.get())
+                self.logger.debug("Received distance: {dist}".format(dist=msg)
                 if msg[len(msg)-1] == '$':
                     break
 
-        rx.cancel()
-        pi.stop()
-
         data = {}
-        data['humidity']       = msg[0:4]
-        data['temperature']    = msg[5:9]
-        data['level']          = msg[10:len(msg)-1]
-        data['timestamp']      = str(datetime.datetime.utcnow().isoformat())
+		data['level']          = msg[10:len(msg)-1]
+		
+        #data['humidity']      = msg[0:4]
+        #data['temperature']   = msg[5:9]       
+        #data['timestamp']     = str(datetime.datetime.utcnow().isoformat())
 
-        h   = float(msg[0:4]) / 100.0
-        t   = float(msg[5:9]) / 100.0
-        l   = msg[10:len(msg)-1]
-        ts  = str(datetime.datetime.utcnow().isoformat())
+        level   = msg[10:len(msg)-1]
+		#h   = float(msg[0:4]) / 100.0
+        #t   = float(msg[5:9]) / 100.0
+        #ts  = str(datetime.datetime.utcnow().isoformat())
 
-        print h
-        print t
-        print d
-        print ts
-
-        print(data)
-
-    def getLevel(self)
-        return l
+        #print h
+        #print t
+        #print d
+        #print ts
+        #print(data)		
+		return level
 
