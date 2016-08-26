@@ -43,7 +43,7 @@ class LevelSensor():
                     break
 
         data = {}
-		data['level']          = msg[10:len(msg)-1]
+        data['level']          = msg[10:len(msg)-1]
 		
         #data['humidity']      = msg[0:4]
         #data['temperature']   = msg[5:9]       
@@ -59,5 +59,5 @@ class LevelSensor():
         #print d
         #print ts
         #print(data)		
-		return level
+        return level
 
