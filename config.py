@@ -16,6 +16,6 @@ sensors = dict(
     brightnessGPIOPort = 17,
     tempAndHumidityGPIOPort = 4,
     tempAndHumiditySensorVersion = 11,
-    LevelSensorGPIOPort = 27
+    LevelSensorGPIOPort = 27,
     LevelSensorBPS = 2000
 )
