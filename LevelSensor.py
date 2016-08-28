@@ -38,8 +38,8 @@ class LevelSensor():
 		        time.sleep(0.1)
 		    else:
 		        msg = "".join(chr (c) for c in self.rx.get())
-		        #self.logger.debug("Received msg: " + msg // Complete Message
-		        self.logger.debug("Received distance: " + msg[10:len(msg)-1] // only level
+		        #self.logger.debug("Received msg: " + msg  #Complete Message
+		        self.logger.debug("Received distance: " + msg[10:len(msg)-1]  #only level
 		        if msg[len(msg)-1] == '$':
 		            break
 
