@@ -1,14 +1,14 @@
 // Parse local CSV file
-function parseData(createTempGraph) {
+function parseData(createGraph) {
 	Papa.parse("../data.csv", {
 		download: true,
 		complete: function(results) {
-			createTempGraph(results.data);
+			createGraph(results.data);
 		}
 	});
 }
 
-function createTempGraph(data) {
+function createGraph(data) {
 	var date = [];
 	var temp = [];
 	var humidity = [];
@@ -53,7 +53,7 @@ function createTempGraph(data) {
 	
 }
 
-parseData(createTempGraph);
+parseData(createGraph);
 
 
 /*$( document ).ready(function() {
