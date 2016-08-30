@@ -2,6 +2,7 @@ import time
 import config
 import logging
 import threading
+#import csv
 
 from flask import Flask, url_for, render_template, request, jsonify
 from flask.ext.classy import FlaskView, route
@@ -43,3 +44,15 @@ class WebApp(FlaskView, threading.Thread):
 @app.route("/")
 @app.route("/home")
 @app.route("/index")
+def index():
+    template = 'head.html'
+    return render_template(template)
+
+@app.route("/data.csv")
+def data():
+    output = "data.csv"
+#    csv_path = './static/data.csv'
+#    csv_file = open(csv_path, 'rb')
+#    csv_obj = csv.DictReader(csv_file)
+#    output = csv_obj
+    return output
