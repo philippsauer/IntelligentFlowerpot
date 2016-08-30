@@ -13,7 +13,7 @@ class TempHumiditySensor():
       self.sensorVersion = config.sensors['tempAndHumiditySensorVersion']
 
       # Set up logging       
-      self.logger = logging.getLogger('Database')
+      self.logger = logging.getLogger('TempHumiditySensor')
       self.logger.setLevel(logging.DEBUG)
       ch = logging.StreamHandler()
       ch.setLevel(logging.DEBUG)
@@ -26,7 +26,7 @@ class TempHumiditySensor():
       proc = subprocess.Popen(["sudo Adafruit_DHT 11 4"], stdout=subprocess.PIPE, shell=True)
       (out, err) = proc.communicate()    
       outSplitted = out.split(" ")     
-      temp = outSplitted[0][5:-1]  
+      temp = outSplitted[0][5:-3]  
       self.logger.debug('Current Temparature: '+ temp)      
       return temp
 
@@ -34,6 +34,6 @@ class TempHumiditySensor():
       proc = subprocess.Popen(["sudo Adafruit_DHT 11 4"], stdout=subprocess.PIPE, shell=True)
       (out, err) = proc.communicate()    
       outSplitted = out.split(" ")     
-      humidity = outSplitted[2][9:-2]  
+      humidity = outSplitted[2][9:-4]  
       self.logger.debug('Current Humidity: '+ humidity)      
       return humidity
