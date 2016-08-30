@@ -68,3 +68,125 @@ body{
     color: #000;
     padding-top: 50px;
 }
+
+
+/* NEW ################################ */
+
+/* button */
+.button {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.6em;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 4px 6px;
+    margin: 0 10px;
+    position: relative;
+    background: #ccc;
+    color: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,0.1);
+    background: rgb(190,190,190); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(190,190,190,1) 0%, rgba(170,170,170,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(190,190,190,1)), color-stop(100%,rgba(170,170,170,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(190,190,190,1) 0%,rgba(170,170,170,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(190,190,190,1) 0%,rgba(170,170,170,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(190,190,190,1) 0%,rgba(170,170,170,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(190,190,190,1) 0%,rgba(170,170,170,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bebebe', endColorstr='#aaaaaa',GradientType=0 ); /* IE6-9 */
+}
+.button:hover {
+    background: #637b85;
+}
+header {
+    text-align: center;
+    background:darkcyan;
+    color: #fff;
+    margin-bottom: 40px;
+}
+header h1 {
+	padding:2rem;
+}
+.container {
+    width: 200px;
+    margin: 0 auto;
+}
+.canvas-container {
+    min-height: 300px;
+    max-height: 600px;
+    position: relative;
+}
+.widget {
+    position: relative;
+    margin-bottom: 80px;
+    background: #efefef;
+    padding: 12px;
+    margin-bottom: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.widget p {
+    margin-top: 0;
+    text-align: center;
+}
+.widget h3 {
+    margin: -12px 0 12px -12px;
+    padding: 12px;
+    width: 100%;
+    text-align: center;
+    color: #627b86;
+    line-height: 2em;
+    background:gainsboro;
+}
+
+@media only screen and (min-width:300px){
+    .container {
+        width: 98%;
+        margin: 0 auto;
+    }
+}
+@media only screen and (min-width:600px){
+    .container {
+        width: 98%;
+        margin: 0 auto;
+    }
+    .block {
+        width: 100%;
+    }
+	.block:first-child {
+		margin: 0 auto 1%;
+    }
+    .block:last-child {
+		width: 100%;
+		margin: 0 auto 1%;
+    }
+} 
+@media only screen and (min-width:960px){
+    .container {
+        width: 960px;
+    }
+    .block {
+        float: left;
+        width: 49.5%;
+    }
+    .block:first-child {
+        margin-left: 0;
+		margin-right: 0.5%;
+    }
+    .block:last-child {
+		width: 49.5%;
+        margin-right: 0;
+        margin-left: 0.5%;
+    }
+}
+@media only screen and (min-width:1140px){
+    .container {
+        width: 1120px;
+    }
+}
+@media only screen and (min-width:1360px){
+    .container {
+        width: 1300px;
+    }
+}

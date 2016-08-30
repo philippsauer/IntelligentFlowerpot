@@ -5,6 +5,7 @@
 	<title>Intelligenter Blumentopf</title>
   <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
   <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
+  <script type=text/javascript src="{{url_for('static', filename='moment.js') }}"></script>
   <script type=text/javascript src="{{url_for('static', filename='Chart.min.js') }}"></script>
   <script type=text/javascript src="{{url_for('static', filename='papaparse.min.js') }}"></script>
   <script type=text/javascript src="{{url_for('static', filename='main.js') }}"></script>
@@ -12,34 +13,49 @@
 </head>
  <body>
     <div id="wrapper">
-      <div id="top">
-        <img src="/static/logo.png" id="logo" width="90px" alt="Logo">
-        <div id="heading">
-            Control Panel "Intelligenter Blumentopf"</b>
-        </div> 
-      </div>
-        <div id="content">
-        		<div id="chart">
-            		<canvas id="multipleChart"></canvas>
+        <header>
+            <div class="container clearfix">
+                <h1>Control Panel "Intelligenter Blumentopf"</h1>
             </div>
-            <div id="beleuchtung">
-                <h3>Beleuchtungs-Steuerung</h2>            
-                    <div id="content-part beleuchtung-content-left">
-                        test
-                    </div>
-                    <div id="content-part beleuchtung-content-right">
-                        <canvas id="beleuchtungsChart"></canvas>
-                    </div>
-            </div> 
-            <div id="bewaesserung">
-                <h3>Bewässerungs-Steuerung</h2>
-                <canvas id="bewaesserungsChart"></canvas>
-            </div> 
-<!--        
-						<canvas id="levelChart" width="250" height="250"></canvas>
-            <canvas id="humidityChart" width="250" height="250"></canvas>
-            <canvas id="brightnessChart" width="250" height="250"></canvas>
--->
-        </div> 
-      </div>
-  </div>
+        </header>
+        <div class="container clearfix">
+            <div class="block widget">
+                <h3>Temperatur</h3>
+                <div class="canvas-container">
+                    <canvas id="temperature"></canvas>
+                </div>
+            </div>
+            <div class="block widget">
+                <h3>Luftfeuchtigkeit</h3>
+                <div class="canvas-container">
+                    <canvas id="humidity"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="container clearfix">
+            <div class="block widget">
+                <h3>Füllstand Regentonne</h3>
+                <div class="canvas-container">
+                    <canvas id="level"></canvas>
+                </div>
+            </div>
+            <div class="block widget">
+                <h3>Helligkeit</h3>
+                <div class="canvas-container">
+                    <canvas id="brightness"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="container clearfix">
+            <div class="block widget">
+                <h3>Multiple</h3>
+                <div class="canvas-container">
+          			<canvas id="multipleChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div><p><a href="" class="button">Change Date Range</a></div>
+
+<footer>
+</footer>

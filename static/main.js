@@ -1,3 +1,5 @@
+var timeFormat = 'DD.MM.YYYY HH:mm';
+
 // Parse local CSV file
 function parseData(createGraph) {
 	Papa.parse("../data.csv", {
@@ -29,32 +31,32 @@ function createGraph(data) {
 	console.log(brigthness);
 	console.log(level);
 	
-	var ctx_temp = document.getElementById("beleuchtungsChart");
+	var ctx_temp = document.getElementById("temperature");
 	var tempChart = new Chart(ctx_temp, {
       type: 'line',
       data: {
 				
           labels: date,
           datasets: [{
-						label: "Temperatur",
-            fill: false,
-						lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: temp
+			label: "Temperatur",
+			fill: false,
+			lineTension: 0.1,
+			backgroundColor: "rgba(255,0,0,0.4)",
+			borderColor: "rgba(255,0,0,1)",
+			borderCapStyle: 'butt',
+			borderDash: [],
+			borderDashOffset: 0.0,
+			borderJoinStyle: 'miter',
+			pointBorderColor: "rgba(255,0,0,1)",
+			pointBackgroundColor: "#fff",
+			pointBorderWidth: 1,
+			pointHoverRadius: 5,
+			pointHoverBackgroundColor: "rgba(255,0,0,1)",
+			pointHoverBorderColor: "rgba(220,220,220,1)",
+			pointHoverBorderWidth: 2,
+			pointRadius: 1,
+			pointHitRadius: 10,
+			data: temp
           }]
 					
       },
@@ -67,14 +69,124 @@ function createGraph(data) {
               }]
           }
       }
-  });
+  	});
+	var ctx_humi = document.getElementById("humidity");
+	var humiChart = new Chart(ctx_humi, {
+		type: 'line',
+      	data: {				
+      		labels: date,
+        	datasets: [{
+				label: "Luftfeuchtigkeit",
+				fill: false,
+				backgroundColor: "rgba(74,215,0,0.4)",
+				borderColor: "rgba(74,215,0,1)",
+				borderCapStyle: 'butt',
+				borderDash: [],
+				borderDashOffset: 0.0,
+				borderJoinStyle: 'miter',
+				pointBorderColor: "rgba(74,215,0,1)",
+				pointBackgroundColor: "#fff",
+				pointBorderWidth: 1,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: "rgba(74,215,0,1)",
+				pointHoverBorderColor: "rgba(220,220,220,1)",
+				pointHoverBorderWidth: 2,
+				pointRadius: 1,
+				pointHitRadius: 10,
+				data: humidity
+			}]			
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  	});
+	var ctx_level = document.getElementById("level");
+	var levelChart = new Chart(ctx_level, {
+		type: 'line',
+		data: {	
+			labels: date,
+			datasets: [{
+				label: "Füllstand Regentonne",
+					fill: false,
+					lineTension: 0.1,
+					backgroundColor: "rgba(75,192,192,0.4)",
+					borderColor: "rgba(75,192,192,1)",
+					borderCapStyle: 'butt',
+					borderDash: [],
+					borderDashOffset: 0.0,
+					borderJoinStyle: 'miter',
+					pointBorderColor: "rgba(75,192,192,1)",
+					pointBackgroundColor: "#fff",
+					pointBorderWidth: 1,
+					pointHoverRadius: 5,
+					pointHoverBackgroundColor: "rgba(75,192,192,1)",
+					pointHoverBorderColor: "rgba(220,220,220,1)",
+					pointHoverBorderWidth: 2,
+					pointRadius: 1,
+					pointHitRadius: 10,
+					data: level				
+          		}]
+					
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  	});
+	var ctx_brightness = document.getElementById("brightness");
+	var brightnessChart = new Chart(ctx_brightness, {
+		type: 'line',
+		data: {	
+			labels: date,
+			datasets: [{
+				label: "Helligkeit",
+				fill: false,
+				backgroundColor: "rgba(255,255,0,0.4)",
+				borderColor: "rgba(255,255,0,1)",
+				borderCapStyle: 'butt',
+				borderDash: [],
+				borderDashOffset: 0.0,
+				borderJoinStyle: 'miter',
+				pointBorderColor: "rgba(255,255,0,1)",
+				pointBackgroundColor: "#fff",
+				pointBorderWidth: 1,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: "rgba(255,255,0,1)",
+				pointHoverBorderColor: "rgba(220,220,220,1)",
+				pointHoverBorderWidth: 2,
+				pointRadius: 1,
+				pointHitRadius: 10,
+				data: brigthness			
+          	}]
+					
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  	});
 	var ctx_multiple = document.getElementById("multipleChart").getContext("2d");
-	ctx_multiple.canvas.width = 600;
-	ctx_multiple.canvas.height = 600;
+/*	ctx_multiple.canvas.width = 600;
+	ctx_multiple.canvas.height = 600;*/
 	var multiplelChart = new Chart(ctx_multiple, {
       type: 'line',
-      data: {
-				
+      data: {	
           labels: date,
           datasets: [
 						{
@@ -170,6 +282,18 @@ function createGraph(data) {
 						text:'Intelligenter Blumentopf'
 				},
 				scales: {
+					/*xAxes: [{
+						type: "time",
+						time: {
+							format: timeFormat,
+							// round: 'day'
+							tooltipFormat: 'll HH:mm'
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Tag'
+						}
+					},],*/
 					yAxes: [{
 						ticks: {
 							beginAtZero:true
