@@ -26,9 +26,9 @@ class LevelSensor():
         
 
 	
-    def getLevel(self):
+	def getLevel(self):
     
-        pi = pigpio.pi()
+		pi = pigpio.pi()
 		self.rx = vw.rx(pi, self.pin, self.bps)
 		while True:
 		    if not self.rx.ready():
@@ -36,14 +36,14 @@ class LevelSensor():
 		    else:
 		        msg = "".join(chr (c) for c in self.rx.get())
 		        #self.logger.debug("Received msg: " + msg  #Complete Message
-		        self.logger.debug("Received distance: " + msg[10:len(msg)-1]  #only level
+		        self.logger.debug("Received distance: " + msg[10:len(msg)-1])  #only level
 		        if msg[len(msg)-1] == '$':
-		            break
+		        	break
 		data = {}
-		data['level']          = msg[10:len(msg)-1]
+		data['level'] = msg[10:len(msg)-1]
 			
-		level   = msg[10:len(msg)-1]
+		level = msg[10:len(msg)-1]
 		self.rx.cancel()
-		self.pi.stop()
+		pi.stop()
 		
 		return level
