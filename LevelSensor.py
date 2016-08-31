@@ -15,7 +15,7 @@ class LevelSensor():
 		self.bps = config.sensors['LevelSensorBPS']
 
 		# Set up logging       
-		self.logger = logging.getLogger('Database')
+		self.logger = logging.getLogger('LevelSensor')
 		self.logger.setLevel(logging.DEBUG)
 		ch = logging.StreamHandler()
 		ch.setLevel(logging.DEBUG)
@@ -23,16 +23,13 @@ class LevelSensor():
 		ch.setFormatter(formatter)
 		self.logger.addHandler(ch)
 		self.logger.disabled = self.disableLogging
-	  
-		# GPIO Connection
-		self.pi = pigpio.pi()
-		self.rx = vw.rx(self.pi, self.pin, self.bps)
-	  
-		#self.rx.cancel()
-		#self.pi.stop()
+        
 
-	def getLevel(self):
-
+	
+    def getLevel(self):
+    
+        pi = pigpio.pi()
+		self.rx = vw.rx(pi, self.pin, self.bps)
 		while True:
 		    if not self.rx.ready():
 		        time.sleep(0.1)
@@ -42,22 +39,11 @@ class LevelSensor():
 		        self.logger.debug("Received distance: " + msg[10:len(msg)-1]  #only level
 		        if msg[len(msg)-1] == '$':
 		            break
-
 		data = {}
 		data['level']          = msg[10:len(msg)-1]
 			
-		#data['humidity']      = msg[0:4]
-		#data['temperature']   = msg[5:9]       
-		#data['timestamp']     = str(datetime.datetime.utcnow().isoformat())
-		
 		level   = msg[10:len(msg)-1]
-			#h   = float(msg[0:4]) / 100.0
-		#t   = float(msg[5:9]) / 100.0
-		#ts  = str(datetime.datetime.utcnow().isoformat())
+		self.rx.cancel()
+		self.pi.stop()
 		
-		#print h
-		#print t
-		#print d
-		#print ts
-		#print(data)		
 		return level

@@ -8,6 +8,7 @@ import logging
 
 from WebApp import WebApp
 from TempHumiditySensor import TempHumiditySensor 
+from RemotePowerSupplyController import RemotePowerSupplyController
 from CSVData import CSVData
 
 class IntelligenterBlumentopf(threading.Thread):
@@ -18,6 +19,8 @@ class IntelligenterBlumentopf(threading.Thread):
         # Get configuration
         self.disableLogging = config.general['disableLogging']
         self.checkSensorsInterval = config.sensors['checkSensorsInterval']
+        self.criticalHumidity = config.sensors['criticalHumidity']
+        self.criticalBrightness = config.sensors['criticalBrightness']
         self.initializeWifi = False
         
         # Start logging       
@@ -31,24 +34,40 @@ class IntelligenterBlumentopf(threading.Thread):
         self.logger.disabled = self.disableLogging
       
         # Initialize WebApp
-        self.webApp = WebApp(self)          
-        
+        self.webApp = WebApp(self) 
+          
+        self.humidity = 999
+        self.temp = 999
+        self.level = 999  
+        self.brightness = 999  
         
 if __name__ == '__main__':
     
     ib = IntelligenterBlumentopf()
     tempHumiditySensor = TempHumiditySensor()
+    remotePowerSupplyController = RemotePowerSupplyController()
     csvData = CSVData()
     ib.logger.debug('IntelligenterBlumentopf is up and running...')  
     
     while True:
     
         #check sensors
-        humidity = tempHumiditySensor.getTemparature()
-        temp = tempHumiditySensor.getHumidity()
+        ib.humidity = tempHumiditySensor.getHumidity()
+        ib.temp = tempHumiditySensor.getTemparature()
+        ib.level = 999 #tbd 
+        ib.brightness = 999 #tbd 
         
         #write data to file
-        csvData.setData(temp, '(bodenfeuchtigkeit)', humidity, '(fuellstand)')
+        csvData.setData(ib.temp, ib.brightness, ib.humidity, ib.level)
         
+        #do something
+        if(int(ib.humidity) < ib.criticalHumidity):
+            remotePowerSupplyController.runPump()
+            
+        if(int(ib.brightness) < ib.criticalBrightness):
+            remotePowerSupplyController.lightOn()
+                   
         #wait some Time        
         time.sleep(ib.checkSensorsInterval)
+        
+        
