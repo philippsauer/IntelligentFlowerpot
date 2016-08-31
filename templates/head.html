@@ -6,11 +6,11 @@
 <title>Intelligenter Blumentopf</title>
 <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
 <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
-<script type=text/javascript src="{{url_for('static', filename='moment.js') }}"></script>
+<!--<script type=text/javascript src="{{url_for('static', filename='moment.js') }}"></script>
 <script type=text/javascript src="{{url_for('static', filename='Chart.min.js') }}"></script>
 <script type=text/javascript src="{{url_for('static', filename='papaparse.min.js') }}"></script>
 <script type=text/javascript src="{{url_for('static', filename='main.js') }}"></script>
-</head>
+--></head>
 <body>
 <div id="wrapper">
   <header>
@@ -54,7 +54,384 @@
       </div>
     </div>
   </div>
-  <div><a href="" class="button">Change Date Range</a></div>
- 
-<!--</div>
-<footer> </footer>-->
+<!--
+	<div><a href="{{url_for('static', filename='data.csv') }}" class="button">CSV Download</a></div>  
+-->  
+	<div><a href="" class="button">Change Date Range</a></div>
+<!--
+	{{ object_list }}
+  <table border=1 cellpadding=7>
+      <tr>
+          <th>Name</th>
+      </tr>
+      {% for obj in object_list %}
+      <tr>
+          <td>{{ obj }} - {{ obj[0] }}</td>
+      </tr>
+      {% endfor %}
+  </table>
+-->
+</div>
+<footer></footer>
+<script type=text/javascript src="{{url_for('static', filename='Chart.min.js') }}"></script>
+<script type="text/javascript">
+$( document ).ready(function() {
+	
+/*	
+	var ctx_temp = document.getElementById("temperature");
+	var tempChart = new Chart(ctx_temp, {
+      type: 'line',
+      data: {
+          labels: [
+						{% for obj in object_list %}
+						"{{ obj[0] }}"
+						{% if not loop.last %},{% endif %}
+						{% endfor %}
+					],
+          datasets: [{
+              data: [
+								{% for obj in object_list %}
+								{{ obj[1] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+*/
+	
+		var ctx_temp = document.getElementById("temperature");
+		var tempChart = new Chart(ctx_temp, {
+      type: 'line',
+      data: {
+				
+          labels: [
+						{% for obj in object_list %}
+						"{{ obj[0] }}"
+						{% if not loop.last %},{% endif %}
+						{% endfor %}
+					],
+          datasets: [{
+						label: "Temperatur",
+						fill: false,
+						lineTension: 0.1,
+						backgroundColor: "rgba(255,0,0,0.4)",
+						borderColor: "rgba(255,0,0,1)",
+						borderCapStyle: 'butt',
+						borderDash: [],
+						borderDashOffset: 0.0,
+						borderJoinStyle: 'miter',
+						pointBorderColor: "rgba(255,0,0,1)",
+						pointBackgroundColor: "#fff",
+						pointBorderWidth: 1,
+						pointHoverRadius: 5,
+						pointHoverBackgroundColor: "rgba(255,0,0,1)",
+						pointHoverBorderColor: "rgba(220,220,220,1)",
+						pointHoverBorderWidth: 2,
+						pointRadius: 1,
+						pointHitRadius: 10,
+						data: [
+											{% for obj in object_list %}
+											{{ obj[1] }}
+											{% if not loop.last %},{% endif %}
+											{% endfor %}
+										]
+								}]
+					
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  	});
+	var ctx_humi = document.getElementById("humidity");
+	var humiChart = new Chart(ctx_humi, {
+		type: 'line',
+      	data: {				
+      		labels: [
+						{% for obj in object_list %}
+						"{{ obj[0] }}"
+						{% if not loop.last %},{% endif %}
+						{% endfor %}
+					],
+        	datasets: [{
+						label: "Luftfeuchtigkeit",
+						fill: false,
+						backgroundColor: "rgba(74,215,0,0.4)",
+						borderColor: "rgba(74,215,0,1)",
+						borderCapStyle: 'butt',
+						borderDash: [],
+						borderDashOffset: 0.0,
+						borderJoinStyle: 'miter',
+						pointBorderColor: "rgba(74,215,0,1)",
+						pointBackgroundColor: "#fff",
+						pointBorderWidth: 1,
+						pointHoverRadius: 5,
+						pointHoverBackgroundColor: "rgba(74,215,0,1)",
+						pointHoverBorderColor: "rgba(220,220,220,1)",
+						pointHoverBorderWidth: 2,
+						pointRadius: 1,
+						pointHitRadius: 10,
+						data: [
+								{% for obj in object_list %}
+								{{ obj[3] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]
+					}]			
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  	});
+	var ctx_level = document.getElementById("level");
+	var levelChart = new Chart(ctx_level, {
+		type: 'line',
+		data: {	
+			labels: [
+						{% for obj in object_list %}
+						"{{ obj[0] }}"
+						{% if not loop.last %},{% endif %}
+						{% endfor %}
+					],
+			datasets: [{
+				label: "Füllstand Regentonne",
+					fill: false,
+					lineTension: 0.1,
+					backgroundColor: "rgba(75,192,192,0.4)",
+					borderColor: "rgba(75,192,192,1)",
+					borderCapStyle: 'butt',
+					borderDash: [],
+					borderDashOffset: 0.0,
+					borderJoinStyle: 'miter',
+					pointBorderColor: "rgba(75,192,192,1)",
+					pointBackgroundColor: "#fff",
+					pointBorderWidth: 1,
+					pointHoverRadius: 5,
+					pointHoverBackgroundColor: "rgba(75,192,192,1)",
+					pointHoverBorderColor: "rgba(220,220,220,1)",
+					pointHoverBorderWidth: 2,
+					pointRadius: 1,
+					pointHitRadius: 10,
+					data: [
+								{% for obj in object_list %}
+								{{ obj[4] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]			
+      }]
+					
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  	});
+	var ctx_brightness = document.getElementById("brightness");
+	var brightnessChart = new Chart(ctx_brightness, {
+		type: 'line',
+		data: {	
+			labels: [
+						{% for obj in object_list %}
+						"{{ obj[0] }}"
+						{% if not loop.last %},{% endif %}
+						{% endfor %}
+					],
+			datasets: [{
+				label: "Helligkeit",
+				fill: false,
+				backgroundColor: "rgba(255,255,0,0.4)",
+				borderColor: "rgba(255,255,0,1)",
+				borderCapStyle: 'butt',
+				borderDash: [],
+				borderDashOffset: 0.0,
+				borderJoinStyle: 'miter',
+				pointBorderColor: "rgba(255,255,0,1)",
+				pointBackgroundColor: "#fff",
+				pointBorderWidth: 1,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: "rgba(255,255,0,1)",
+				pointHoverBorderColor: "rgba(220,220,220,1)",
+				pointHoverBorderWidth: 2,
+				pointRadius: 1,
+				pointHitRadius: 10,
+				data: [
+								{% for obj in object_list %}
+								{{ obj[3] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]			
+          	}]
+					
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  	});
+	var ctx_multiple = document.getElementById("multipleChart").getContext("2d");
+/*	ctx_multiple.canvas.width = 600;
+	ctx_multiple.canvas.height = 600;*/
+	var multiplelChart = new Chart(ctx_multiple, {
+      type: 'line',
+      data: {	
+          labels: [
+						{% for obj in object_list %}
+						"{{ obj[0] }}"
+						{% if not loop.last %},{% endif %}
+						{% endfor %}
+					],
+          datasets: [
+						{
+							label: "Temperatur",
+							fill: false,
+							lineTension: 0.1,
+							backgroundColor: "rgba(255,0,0,0.4)",
+							borderColor: "rgba(255,0,0,1)",
+							borderCapStyle: 'butt',
+							borderDash: [],
+							borderDashOffset: 0.0,
+							borderJoinStyle: 'miter',
+							pointBorderColor: "rgba(255,0,0,1)",
+							pointBackgroundColor: "#fff",
+							pointBorderWidth: 1,
+							pointHoverRadius: 5,
+							pointHoverBackgroundColor: "rgba(255,0,0,1)",
+							pointHoverBorderColor: "rgba(220,220,220,1)",
+							pointHoverBorderWidth: 2,
+							pointRadius: 1,
+							pointHitRadius: 10,
+							data: [
+								{% for obj in object_list %}
+								{{ obj[1] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]
+						},
+						{
+							label: "Luftfeuchtigkeit",
+							fill: false,
+							backgroundColor: "rgba(74,215,0,0.4)",
+							borderColor: "rgba(74,215,0,1)",
+							borderCapStyle: 'butt',
+							borderDash: [],
+							borderDashOffset: 0.0,
+							borderJoinStyle: 'miter',
+							pointBorderColor: "rgba(74,215,0,1)",
+							pointBackgroundColor: "#fff",
+							pointBorderWidth: 1,
+							pointHoverRadius: 5,
+							pointHoverBackgroundColor: "rgba(74,215,0,1)",
+							pointHoverBorderColor: "rgba(220,220,220,1)",
+							pointHoverBorderWidth: 2,
+							pointRadius: 1,
+							pointHitRadius: 10,
+							data: [
+								{% for obj in object_list %}
+								{{ obj[3] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]
+						},
+						{	
+							label: "Helligkeit",
+							fill: false,
+							backgroundColor: "rgba(255,255,0,0.4)",
+							borderColor: "rgba(255,255,0,1)",
+							borderCapStyle: 'butt',
+							borderDash: [],
+							borderDashOffset: 0.0,
+							borderJoinStyle: 'miter',
+							pointBorderColor: "rgba(255,255,0,1)",
+							pointBackgroundColor: "#fff",
+							pointBorderWidth: 1,
+							pointHoverRadius: 5,
+							pointHoverBackgroundColor: "rgba(255,255,0,1)",
+							pointHoverBorderColor: "rgba(220,220,220,1)",
+							pointHoverBorderWidth: 2,
+							pointRadius: 1,
+							pointHitRadius: 10,
+							data: [
+								{% for obj in object_list %}
+								{{ obj[2] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]		
+						},
+						{
+							label: "Füllstand Regentonne",
+							fill: false,
+							lineTension: 0.1,
+							backgroundColor: "rgba(75,192,192,0.4)",
+							borderColor: "rgba(75,192,192,1)",
+							borderCapStyle: 'butt',
+							borderDash: [],
+							borderDashOffset: 0.0,
+							borderJoinStyle: 'miter',
+							pointBorderColor: "rgba(75,192,192,1)",
+							pointBackgroundColor: "#fff",
+							pointBorderWidth: 1,
+							pointHoverRadius: 5,
+							pointHoverBackgroundColor: "rgba(75,192,192,1)",
+							pointHoverBorderColor: "rgba(220,220,220,1)",
+							pointHoverBorderWidth: 2,
+							pointRadius: 1,
+							pointHitRadius: 10,
+							data: [
+								{% for obj in object_list %}
+								{{ obj[4] }}
+								{% if not loop.last %},{% endif %}
+								{% endfor %}
+							]				
+						}
+					]
+					
+      },
+      options: {
+				maintainAspectRatio: true,
+				responsive: true,
+				title:{
+						display:true,
+						text:'Intelligenter Blumentopf'
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+      }
+  });
+});
+</script>
