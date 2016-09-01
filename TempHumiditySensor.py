@@ -34,8 +34,6 @@ class TempHumiditySensor():
       else:
          self.logger.debug('Current temp is not numeric, returning 999')  
          return 999;      
-      
-      return temp
 
    def getHumidity(self):
       proc = subprocess.Popen(["sudo Adafruit_DHT 11 4"], stdout=subprocess.PIPE, shell=True)
