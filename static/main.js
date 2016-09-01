@@ -2,7 +2,7 @@ var timeFormat = 'DD.MM.YYYY HH:mm';
 
 // Parse local CSV file
 function parseData(createGraph) {
-	Papa.parse("../data.csv", {
+	Papa.parse("./static/data.csv", { /* data.csv in html rendern lassen */
 		download: true,
 		complete: function(results) {
 			createGraph(results.data);
