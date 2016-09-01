@@ -27,7 +27,14 @@ class TempHumiditySensor():
       (out, err) = proc.communicate()    
       outSplitted = out.split(" ")     
       temp = outSplitted[0][5:-3]  
-      self.logger.debug('Current Temparature: '+ temp)      
+      self.logger.debug('Current Temparature: '+ temp)   
+      
+      if(self.is_number(temp)):
+         return temp
+      else:
+         self.logger.debug('Current temp is not numeric, returning 999')  
+         return 999;      
+      
       return temp
 
    def getHumidity(self):
@@ -36,4 +43,17 @@ class TempHumiditySensor():
       outSplitted = out.split(" ")     
       humidity = outSplitted[2][9:-4]  
       self.logger.debug('Current Humidity: '+ humidity)      
-      return humidity
+      
+      if(self.is_number(humidity)):
+         return humidity
+      else:
+         self.logger.debug('Current Humidity is not numeric, returning 999')  
+         return 999;
+         
+      
+   def is_number(s):
+      try:
+         float(s)
+         return True
+      except ValueError:
+         return False
