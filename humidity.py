@@ -19,7 +19,7 @@ if __name__ == "__main__":
 		while True:
 			val = readChannel(0)
 			if (val != 0):
-				print((1035-val)/7.5)
+				print((140*(1023-val)/1023))
 			time.sleep(delay)
 
 	except KeyboardInterrupt:

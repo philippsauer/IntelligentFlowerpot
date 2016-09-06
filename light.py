@@ -4,7 +4,7 @@ import spidev
 import os
 import time
 
-delay = 3.0
+delay = 1.0
 
 spi = spidev.SpiDev()
 spi.open(0,0)
@@ -19,7 +19,7 @@ if __name__ == "__main__":
 		while True:
 			val = readChannel(0)
 			if (val != 0):
-				print(((712-(val))/7))
+				print((100*(1023-val)/1023))
 			time.sleep(delay)
 
 	except KeyboardInterrupt:
