@@ -7,7 +7,7 @@ import time
 delay = 1.0
 
 spi = spidev.SpiDev()
-spi.open(0,0)
+spi.open(0,1)
 
 def readChannel(channel):
 	val = spi.xfer2([1,(8+channel)<<4,0])

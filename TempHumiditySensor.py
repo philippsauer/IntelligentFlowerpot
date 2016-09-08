@@ -49,7 +49,7 @@ class TempHumiditySensor():
          return 999;
          
       
-   def is_number(s):
+   def is_number(self, s):
       try:
          float(s)
          return True

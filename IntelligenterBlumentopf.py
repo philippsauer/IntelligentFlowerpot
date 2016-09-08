@@ -10,6 +10,8 @@ from WebApp import WebApp
 from TempHumiditySensor import TempHumiditySensor 
 from RemotePowerSupplyController import RemotePowerSupplyController
 from CSVData import CSVData
+from GroundHumiditySensor import GroundHumiditySensor
+from LightSensor import LightSensor
 
 class IntelligenterBlumentopf(threading.Thread):
 
@@ -46,16 +48,18 @@ if __name__ == '__main__':
     ib = IntelligenterBlumentopf()
     tempHumiditySensor = TempHumiditySensor()
     remotePowerSupplyController = RemotePowerSupplyController()
+    groundHumiditySensor = GroundHumiditySensor()
+    lightSensor = LightSensor()
     csvData = CSVData()
     ib.logger.debug('IntelligenterBlumentopf is up and running...')  
     
     while True:
     
         #check sensors
-        ib.humidity = tempHumiditySensor.getHumidity()
+        ib.humidity = groundHumiditySensor.getGroundHumidity()
         ib.temp = tempHumiditySensor.getTemparature()
         ib.level = 999 #tbd 
-        ib.brightness = 999 #tbd 
+        ib.brightness = lightSensor.getBrightness()
         
         #write data to file
         csvData.setData(ib.temp, ib.brightness, ib.humidity, ib.level)
