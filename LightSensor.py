@@ -30,7 +30,7 @@ class LightSensor():
       delay = 1.0
       self.spi.open(0,1)
       val = self.readChannel(0)
-      self.logger.debug('Current GroudHumidity: '+ str(100*(1023-val)/1023))
+      self.logger.debug('Current Brightness: '+ str(100*(1023-val)/1023))
       if (val != 0):
          return 100*(1023-val)/1023
     

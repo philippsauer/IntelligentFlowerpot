@@ -36,21 +36,25 @@ class RemotePowerSupplyController():
         self.repeat_pause = 0.01000
 
     def runPump(self):
-        self.logger.debug('Running runPump()') 
+        self.logger.debug('Running Pump') 
         self.transmit_code(self.no1_pump_on);
         time.sleep(self.pumpDuration)
+        self.logger.debug('Stopping Pump') 
         self.transmit_code(self.no1_pump_off);
         
     def lightOn(self):
+        self.logger.debug('Enable Light') 
         self.transmit_code(self.no2_light_on);
         
-    def lightOff(self):    
+    def lightOff(self): 
+        self.logger.debug('Disable Light')    
         self.transmit_code(self.no2_light_off);
     
     def transmit_code(self, code):
 
         '''Transmit a chosen code string using the GPIO transmitter'''
         GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
         GPIO.setup(self.transmitterGPIOPort, GPIO.OUT)
         for t in range(self.rfidAttempts):
             for i in code:
