@@ -23,7 +23,13 @@ Der Start des Servers erfolgt automatisch beim Start der Haupt-Anwendung:
     
 Der Server ist nun über http://localhost/ (direkt von RaspberryPi), bzw. von anderen Netzwerkgeräten über folgende Adresse erreichbar: http://192.168.*.*/
 
-## Steuerung der Funksteckdosen
+### Lichtsteuerung
+
+Programm zur Berechnung des Sonnenuntergangs als sunrise.py:
+
+    http://michelanders.blogspot.de/2010/12/calulating-sunrise-and-sunset-in-python.html
+    
+### Steuerung der Funksteckdosen
 
 Das An- bzw. Ausschalten der Funksteckdose A erfolgt über die Befehle
 
