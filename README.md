@@ -148,7 +148,7 @@ Piscope starten
 VirtualWire Klasse für Python importieren (http://abyz.co.uk/rpi/pigpio/code/vw.zip)
 
     
-## Autostart des Rasperry Pi anpassen
+## Autostart des Raspberry Pi anpassen
 
 ### Rechte für Scripte setzen
 
@@ -168,4 +168,6 @@ und folgende Zeilen eintragen
 
     sudo pigpiod
     python /home/pi/pfad/IntelligenterBlumentopf.py &
-    exit 0    
+    exit 0   
+
+mit STRG+O & ENTER speichern und STRG+X schließen
