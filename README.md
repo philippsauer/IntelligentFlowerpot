@@ -166,7 +166,7 @@ Dafür die rc.local wie folgt öffnen
 
 und folgende Zeilen eintragen
 
-    sudo pigpiod
+    /usr/local/bin/pigpiod &
     python /home/pi/pfad/IntelligenterBlumentopf.py &
     exit 0   
 
