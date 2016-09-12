@@ -146,5 +146,26 @@ Piscope starten
     piscope
     
 VirtualWire Klasse für Python importieren (http://abyz.co.uk/rpi/pigpio/code/vw.zip)
+
     
-    
+## Autostart des Rasperry Pi anpassen
+
+### Rechte für Scripte setzen
+
+Rechte für IntelligenterBlumentopf.py so setzen, dass das Script ausführbar ist
+
+    sudo chmod +x /home/pi/pfad/IntelligenterBlumentopf.py
+
+### Autostart anpassen
+
+Pigpio Daemon und danach das Python Script automatisch nach dem Hochfahren starten lassen
+
+Dafür die rc.local wie folgt öffnen
+
+    sudo nano /etc/rc.local
+
+und folgende Zeilen eintragen
+
+    sudo pigpiod
+    python /home/pi/pfad/IntelligenterBlumentopf.py &
+    exit 0    
