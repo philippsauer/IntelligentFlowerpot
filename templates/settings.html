@@ -1,0 +1,96 @@
+<form action="/save" method="get">
+     <div class="outer_frame">    
+        <div class="inner_frame">
+            <table style="width:500px;">
+                <tr>
+                    <td class="label">
+                        Haeufigkeit der Sensorabfragen
+                    </td>
+                    <td>
+                        <select class="select_field" name="checkSensorsInterval">
+                            <option value="1">Sekuendlich</option>
+                            <option selected value="5">Alle 5 Sekunden</option>
+                            <option value="300">Alle 5 Minuten</option>
+                            <option value="3600">Stuendlich</option>
+                            <option value="43200">Alle 12 Stunden</option>
+                            <option value="86400">Taeglich</option>
+                        </select> 
+                    </td>
+                </tr>  
+               <tr>
+                    <td class="label">
+                        Kritische Bodenfeuchtigkeitsschwelle
+                    </td>
+                    <td>
+                        <select class="select_field" name="criticalHumidity">
+                            <option value="60">60 - Nass</option>
+                            <option value="40">40 - Sehr Feucht</option>
+                            <option selected value="20">20 - Leicht Feucht</option>
+                            <option value="10">10 - Sehr Trocken</option>
+                        </select> 
+                    </td>
+                </tr>               
+                <tr>
+                   <td class="label">
+                        Kritische Helligkeit
+                    </td>
+                    <td>
+                        <select class="select_field" name="criticalBrightness">
+                            <option value="90">90 - Direkte Sonne</option>
+                            <option value="50">50 - Tageslicht</option>
+                            <option selected value="30">30 - Daemmerung</option>
+                            <option value="10">10 - Nacht</option>
+                        </select> 
+                    </td>
+                </tr>
+                <tr>
+                   <td class="label">
+                        Beleuchtungsdauer
+                    </td>
+                    <td>
+                        <select class="select_field" name="additionalLightingDuration">
+                            <option value="3600">1 Stunde</option>
+                            <option value="7200">2 Stunden</option>
+                            <option value="10800">3 Stunden</option>
+                            <option value="14400">4 Stunden</option>
+                            <option value="18000">5 Stunden</option>
+                            <option value="21600">6 Stunden</option>
+                            <option value="25200">7 Stunden</option>
+                            <option selected value="28800">8 Stunden</option>
+                            <option value="32400">9 Stunden</option>    
+                            <option value="36000">10 Stunden</option>
+                            <option value="39600">11 Stunden</option>
+                            <option value="43200">12 Stunden</option>
+                            <option value="46800">13 Stunden</option>
+                            <option value="50400">14 Stunden</option>
+                            <option value="54000">15 Stunden</option>
+                            <option value="57600">16 Stunden</option>
+                            <option value="61200">17 Stunden</option>  
+                            <option value="64800">18 Stunden</option>
+                            <option value="68400">19 Stunden</option>
+                            <option value="72000">20 Stunden</option>
+                            <option value="75600">21 Stunden</option>
+                            <option value="79200">22 Stunden</option>
+                            <option value="82800">23 Stunden</option>
+                            <option value="86400">24 Stunden</option>
+                        </select> 
+                    </td>
+                </tr>
+                <tr>
+                   <td class="label">
+                        
+                    </td>
+                    <td>
+                       <div class="button_container">
+                        <button class="submit_btn" type="submit">
+                            Einstellungen speichern
+                        </button>
+                        <div style="clear:both;"></div>
+                      </div>  
+                    </td>
+                </tr>    
+            </table>  
+      
+        </div>
+     </div>
+</form>

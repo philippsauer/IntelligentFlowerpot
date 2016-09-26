@@ -96,6 +96,5 @@ def reboot():
 def configure():
     output = ""
     output = output+render_template('header.html')
-    #output = output+ '<div id="content">'
-    output = output+"<h1>Saving new configuration...</h1>"
+    output = output+render_template('settings.html')
     return output      

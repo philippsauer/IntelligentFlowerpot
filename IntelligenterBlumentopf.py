@@ -14,6 +14,7 @@ from RemotePowerSupplyController import RemotePowerSupplyController
 from CSVData import CSVData
 from GroundHumiditySensor import GroundHumiditySensor
 from LightSensor import LightSensor
+from configparser import ConfigParser
 
 class IntelligenterBlumentopf(threading.Thread):
 
@@ -22,15 +23,30 @@ class IntelligenterBlumentopf(threading.Thread):
         
         # Get configuration
         self.disableLogging = config.general['disableLogging']
-        self.checkSensorsInterval = config.sensors['checkSensorsInterval']
-        self.criticalHumidity = config.sensors['criticalHumidity']
-        self.criticalBrightness = config.sensors['criticalBrightness']
         self.coordsLong = config.general['coordsLong']
         self.coordsLat = config.general['coordsLat']
-        self.additionalLightingDuration = config.general['additionalLightingDuration']
         self.initializeWifi = False
-
         
+        # Get user configuration
+        self.userConfiguration = ConfigParser()
+        self.userConfiguration.read('userproperties.ini')
+        
+        self.criticalHumidity = self.userConfiguration.getint('IntelligenterBlumentopf', 'criticalHumidity')       
+        if(not isinstance(self.criticalHumidity, int)):
+            self.criticalHumidity = config.sensors['criticalHumidity']
+            
+        self.criticalBrightness = self.userConfiguration.getint('IntelligenterBlumentopf', 'criticalBrightness')       
+        if(not isinstance(self.criticalBrightness, int)):
+            self.criticalBrightness = config.sensors['criticalBrightness']
+        
+        self.checkSensorsInterval = self.userConfiguration.getint('IntelligenterBlumentopf', 'checkSensorsInterval')       
+        if(not isinstance(self.checkSensorsInterval, int)):
+            self.checkSensorsInterval = config.sensors['checkSensorsInterval']
+            
+        self.additionalLightingDuration = self.userConfiguration.getint('IntelligenterBlumentopf', 'additionalLightingDuration')       
+        if(not isinstance(self.additionalLightingDuration, int)):
+            self.additionalLightingDuration = config.general['additionalLightingDuration']            
+                
         # Start logging       
         self.logger = logging.getLogger('IntelligenterBlumentopf')
         self.logger.setLevel(logging.DEBUG)
@@ -61,7 +77,15 @@ if __name__ == '__main__':
     sun = sun(lat=ib.coordsLat,long=ib.coordsLong)  
     csvData = CSVData()
     
-    ib.logger.debug('IntelligenterBlumentopf is up and running...')  
+    ib.logger.debug('IntelligenterBlumentopf is up and running...') 
+    ib.logger.debug('self.criticalHumidity:'+str(ib.criticalHumidity))  
+    ib.logger.debug('self.criticalBrightness:'+str(ib.criticalBrightness)) 
+    ib.logger.debug('self.checkSensorsInterval:'+str(ib.checkSensorsInterval)) 
+    ib.logger.debug('self.additionalLightingDuration:'+str(ib.additionalLightingDuration)) 
+  
+    
+    
+    
     
     while True:
     
