@@ -167,7 +167,8 @@ Dafür die rc.local wie folgt öffnen
 und folgende Zeilen eintragen
 
     /usr/local/bin/pigpiod &
-    python /home/pi/pfad/IntelligenterBlumentopf.py &
-    exit 0   
+    cd /home/pi/xxx/IntelligenterBlumentopf
+    python IntelligenterBlumentopf.py &
+    exit 0  
 
 mit STRG+O & ENTER speichern und STRG+X schließen
