@@ -20,6 +20,15 @@
       <h1>Control Panel "Intelligenter Blumentopf"</h1>
     </div>
   </header>
+
+  <div class="container clearfix">
+    <div>
+      <form method="get" action="/config">
+        <button type="submit" id="config"> &#9881; Konfigurationseinstellungen</button>
+      </form>
+    </div>
+  </div>  
+  
   <div class="container clearfix">
     <div class="block widget">
       <h3>Temperatur</h3>
@@ -284,7 +293,7 @@ $( document ).ready(function() {
 				pointHitRadius: 10,
 				data: [
 								{% for obj in object_list %}
-								{{ obj[3] }}
+								{{ obj[2] }}
 								{% if not loop.last %},{% endif %}
 								{% endfor %}
 							]			
@@ -341,7 +350,7 @@ $( document ).ready(function() {
 							]
 						},
 						{
-							label: "Luftfeuchtigkeit",
+							label: "Bodenfeuchtigkeit",
 							fill: false,
 							backgroundColor: "rgba(74,215,0,0.4)",
 							borderColor: "rgba(74,215,0,1)",

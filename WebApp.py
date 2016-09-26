@@ -3,7 +3,8 @@ import config
 import logging
 import threading
 import csv
-
+import os
+from configparser import ConfigParser
 from flask import Flask, url_for, render_template, request, jsonify #, Response
 from flask.ext.classy import FlaskView, route
 
@@ -52,13 +53,49 @@ def get_csv():
 @app.route("/index")
 def index():
     template = 'head.html'
-#    return render_template(template)
     object_list = get_csv()
     return render_template(template, object_list=object_list)
+
+@app.route('/save')
+def save():
+    output = ""
+    output = output+ render_template('header.html')
+    #output = output+ '<div id="content">'
+    output = output+"<h1>Saving new configuration...</h1>"  
     
-#@app.route('/data.csv')
-#def generate_large_csv():
-#    def generate():
-#        for row in iter_all_rows():
-#            yield ','.join(row) + '\n'
-#    return Response(generate(), mimetype='text/csv')
+    additionalLightingDuration = request.args.get('additionalLightingDuration')
+    checkSensorsInterval = request.args.get('checkSensorsInterval')
+    criticalHumidity = request.args.get('criticalHumidity')
+    criticalBrightness = request.args.get('criticalBrightness')
+        
+    if additionalLightingDuration and checkSensorsInterval and criticalHumidity and criticalBrightness: 
+
+        config = ConfigParser()
+        config.read('userproperties.ini')
+        config.set('IntelligenterBlumentopf', 'additionalLightingDuration', additionalLightingDuration)
+        config.set('IntelligenterBlumentopf', 'checkSensorsInterval', checkSensorsInterval)
+        config.set('IntelligenterBlumentopf', 'criticalHumidity', criticalHumidity)
+        config.set('IntelligenterBlumentopf', 'criticalBrightness', criticalBrightness)
+        with open('userproperties.ini', 'w') as configfile:
+            config.write(configfile)
+        
+        output = output+"<p>Successful. Please reboot</p>"
+        output = output+'<br><form method="get" action="/reboot"><button type="submit">Reboot!</button></form>'
+
+    else:
+        output = output+"<p>Failed: Configuration values are invalid.</p>"                 
+    output = output+'</div></body></html>'
+    return output 
+    
+@app.route('/reboot')
+def reboot():
+    os.system('reboot') 
+    return
+    
+@app.route('/config')
+def configure():
+    output = ""
+    output = output+render_template('header.html')
+    #output = output+ '<div id="content">'
+    output = output+"<h1>Saving new configuration...</h1>"
+    return output      

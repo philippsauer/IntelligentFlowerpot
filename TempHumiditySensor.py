@@ -24,7 +24,9 @@ class TempHumiditySensor():
    
    def getTemparature(self):
       proc = subprocess.Popen(["sudo Adafruit_DHT 11 4"], stdout=subprocess.PIPE, shell=True)
-      (out, err) = proc.communicate()    
+      (out, err) = proc.communicate()  
+      self.logger.debug('Output: '+str(out))  
+      self.logger.debug('Error: '+str(err))    
       outSplitted = out.split(" ")     
       temp = outSplitted[0][5:-3]  
       self.logger.debug('Current Temparature: '+ temp)   
@@ -32,8 +34,8 @@ class TempHumiditySensor():
       if(self.is_number(temp)):
          return temp
       else:
-         self.logger.debug('Current temp is not numeric, returning 999')  
-         return 999;      
+         self.logger.debug('Current temp is not numeric, returning 0')  
+         return 0;      
 
    def getHumidity(self):
       proc = subprocess.Popen(["sudo Adafruit_DHT 11 4"], stdout=subprocess.PIPE, shell=True)
@@ -45,8 +47,8 @@ class TempHumiditySensor():
       if(self.is_number(humidity)):
          return humidity
       else:
-         self.logger.debug('Current Humidity is not numeric, returning 999')  
-         return 999;
+         self.logger.debug('Current Humidity is not numeric, returning 0')  
+         return 0;
          
       
    def is_number(self, s):

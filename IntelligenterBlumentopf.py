@@ -67,8 +67,8 @@ if __name__ == '__main__':
     
         #check sensors
         ib.humidity = groundHumiditySensor.getGroundHumidity()
-        ib.temp = tempHumiditySensor.getTemparature()
-        ib.level = 999 #tbd (Tim)
+        ib.temp = int(tempHumiditySensor.getTemparature())
+        ib.level = 0 #tbd (Tim)
         ib.brightness = lightSensor.getBrightness()
         
         #take care of invalid sensor responses
@@ -92,9 +92,14 @@ if __name__ == '__main__':
         sunset = sun.sunset(when=datetime.datetime.now())
         sunrise = sun.sunrise(when=datetime.datetime.now())
         sunsetHourToTimeZone = int(sunset.hour) + 2
+        sunriseHourToTimeZone = int(sunrise.hour) + 2
         sunset = sunset.replace(hour = sunsetHourToTimeZone)
-        sunrise = sunrise.replace(hour = sunsetHourToTimeZone)
+        sunrise = sunrise.replace(hour = sunriseHourToTimeZone)
         now = datetime.time(datetime.datetime.now().hour, datetime.datetime.now().minute, datetime.datetime.now().second)
+        
+        ib.logger.debug('Now: '+ unicode(now))  
+        ib.logger.debug('Sunrise: '+ unicode(sunrise))  
+        ib.logger.debug('Sunset: '+ unicode(sunset))  
         
         if (now < sunrise):
             remotePowerSupplyController.lightOff() 
