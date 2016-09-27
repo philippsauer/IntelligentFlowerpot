@@ -94,7 +94,7 @@ if __name__ == '__main__':
         #check sensors
         ib.humidity = groundHumiditySensor.getGroundHumidity()
         ib.temp = int(tempHumiditySensor.getTemparature())
-        ib.level = levelSensor.getLevel()   
+        ib.level = 0 #levelSensor.getLevel()   -> Fehlermeldung pgpio Deamon nicht gestartet?
         ib.brightness = lightSensor.getBrightness()
         
         #take care of invalid sensor responses
