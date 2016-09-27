@@ -14,6 +14,7 @@ from RemotePowerSupplyController import RemotePowerSupplyController
 from CSVData import CSVData
 from GroundHumiditySensor import GroundHumiditySensor
 from LightSensor import LightSensor
+from LevelSensor import LevelSensor 
 from configparser import ConfigParser
 
 class IntelligenterBlumentopf(threading.Thread):
@@ -74,6 +75,7 @@ if __name__ == '__main__':
     remotePowerSupplyController = RemotePowerSupplyController()
     groundHumiditySensor = GroundHumiditySensor()
     lightSensor = LightSensor()
+    levelSensor = LevelSensor()
     sun = sun(lat=ib.coordsLat,long=ib.coordsLong)  
     csvData = CSVData()
     
@@ -92,7 +94,7 @@ if __name__ == '__main__':
         #check sensors
         ib.humidity = groundHumiditySensor.getGroundHumidity()
         ib.temp = int(tempHumiditySensor.getTemparature())
-        ib.level = 0 #tbd (Tim)
+        ib.level = levelSensor.getLevel()   
         ib.brightness = lightSensor.getBrightness()
         
         #take care of invalid sensor responses
